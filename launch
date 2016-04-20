@@ -1,0 +1,12 @@
+#!/bin/sh
+# debug
+# set -x
+
+while true; do
+  inotifywait -e close_write,moved_to,create,delete /etc/nginx/conf.d
+  sleep 2
+  echo "INFO: nginx configuration change detected, attempting to load the new configuration ..."
+  nginx -t && nginx -s reload || echo "ERROR: nginx configuration has problems, thus cannot be reloaded."
+done &
+
+/usr/sbin/nginx
