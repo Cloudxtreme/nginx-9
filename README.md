@@ -7,6 +7,11 @@ it will automatically detect the differences in there and load-up the new config
 **docker-compose.yml** file example
 ```
 version '2'
+
+networks:
+  backend: {}
+  frontend: {}
+
 services:
   nginx:
     image: andrey01/nginx
